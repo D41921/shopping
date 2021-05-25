@@ -45,24 +45,15 @@
 	<h3>お客様情報を入力してください。</h3>
 
 	<form action="/shopping/OrderServlet?action=confirm" method="post">
-		<table border="1">
-			<tr>
-				<th>お名前</th>
-				<td><input type="text" name="name" value="鈴木一郎" /></td>
-			</tr>
-			<tr>
-				<th>住所</th>
-				<td><input type="text" name="address" value="東京都新宿区" /></td>
-			</tr>
-			<tr>
-				<th>電話</th>
-				<td><input type="text" name="tel" value="03-3333-3333" /></td>
-			</tr>
-			<tr>
-				<th>e-mail</th>
-				<td><input type="text" name="email" value="ichiro@abc.com" /></td>
-			</tr>
-		</table>
+
+		お名前<input type ="text" name ="name" value ="鈴木一郎" /><br>
+		住所<input type ="text" name ="address" value ="東京都新宿区" /><br>
+		電話<input type ="text" name ="tel1" value ="033" />-
+		<input type ="text" name ="tel2" value ="333" />-
+		<input type ="text" name ="tel3" value ="333" /><br>
+		Email <input type ="text" name ="email1" value ="ichiro" />@
+		<input type ="text" name ="email2" value ="abc.com" /><br>
+
 		<input type="submit" value="確認画面へ" />
 	</form>
 

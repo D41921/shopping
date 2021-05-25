@@ -67,18 +67,83 @@ public class OrderServlet extends HttpServlet {
 			// リクエストパラメータの取得
 			String name = request.getParameter("name");
 			String address = request.getParameter("address");
-			String tel = request.getParameter("tel");
-			String email = request.getParameter("email");
+			String tel1 = request.getParameter("tel1");
+			String tel2 = request.getParameter("tel2");
+			String tel3 = request.getParameter("tel3");
+			String email1 = request.getParameter("email1");
+			String email2 = request.getParameter("email2");
 			CustomerBean customer = new CustomerBean();
-			customer.setName(name);
-			customer.setAddress(address);
-			customer.setTel(tel);
-			customer.setEmail(email);
 
-			// セッションスコープに顧客情報を登録
-			session.setAttribute("customer", customer);
-			// 確認画面に遷移
-			this.gotoPage(request, response, "/confirm.jsp");
+			//何も入力しなかった場合の例外処理
+			if (name == null || name.length() == 0 || address == null || address.length() == 0 ||
+					tel1 == null || tel1.length() == 0 || tel2 == null || tel2.length() == 0 ||
+					tel3 == null || tel3.length() == 0 ||
+					email1 == null || email1.length() ==0 || email2 == null || email2.length() == 0) {
+				//未入力データあり
+				request.setAttribute("message", "顧客情報を入力してください。");
+				this.gotoPage(request, response, "/errInternal.jsp");
+				return;
+			}
+
+			try {
+				@SuppressWarnings("unused")
+				//整数以外をはじくためにｔｒｙ内でのみ文字列をint型に変換
+				int intTel1 = Integer.parseInt(tel1);
+				@SuppressWarnings("unused")
+				int intTel2 = Integer.parseInt(tel2);
+				@SuppressWarnings("unused")
+				int intTel3 = Integer.parseInt(tel3);
+
+				//実際にスコープに登録するのは文字型(String)にする→0から始まる数値も認識させるため
+				@SuppressWarnings("unused")
+				String tel = tel1 + "-" + tel2 + "-" + tel3;
+				customer.setTel(tel);
+
+				String email = email1 + "@" + email2;
+				customer.setEmail(email);
+
+
+				// セッションスコープに顧客情報を登録
+				session.setAttribute("customer", customer);
+				// 確認画面に遷移
+				//this.gotoPage(request, response, "/confirm.jsp");
+
+				}catch (Exception e) {
+				request.setAttribute("message", "不正な値が入力されました。");
+				this.gotoPage(request, response, "/errInternal.jsp");
+				return;
+				}
+
+			try {
+				@SuppressWarnings("unused")
+				int intName = Integer.parseInt(name);
+				request.setAttribute("message", "不正な値が入力されました。");
+				this.gotoPage(request, response, "/errInternal.jsp");
+				return;
+
+				}catch (Exception e) {
+				customer.setName(name);
+				//セッションスコープに顧客情報を登録
+				session.setAttribute("customer", customer);
+				//画面遷移
+				//this.gotoPage(request, response, "/confirm.jsp");
+				}
+
+			try {
+				@SuppressWarnings("unused")
+				int intAddress = Integer.parseInt(address);
+				request.setAttribute("message", "不正な値が入力されました。");
+				this.gotoPage(request, response, "/errInternal.jsp");
+				return;
+			}catch(Exception e) {
+				customer.setAddress(address);
+				//セッションスコープに顧客情報を登録
+				session.setAttribute("customer", customer);
+				//確認画面に遷移
+				this.gotoPage(request, response, "/confirm.jsp");
+			}
+
+
 
 		// actionキーが「order」の場合：完了画面に遷移
 		} else if (action.equals("order")) {

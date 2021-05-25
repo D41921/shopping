@@ -1,7 +1,7 @@
 package bean;
 
 /**
- * customerテーブルの1県のレコードを管理するBeanクラス
+ * customerテーブルの1件のレコードを管理するBeanクラス
  * @author tutor
  */
 public class CustomerBean {
