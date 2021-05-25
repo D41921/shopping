@@ -12,6 +12,17 @@
 	<a href="/shopping/snapshot/game.html">ゲーム|</a>
 	<a href="/shopping/snapshot/cart.html">カートを見る</a>
 
+	<form action="/lesson/CircleServlet" method="post">
+		検索： <input type="text" name="radius" size="5">
+		<select name="kind">
+			<option value="all" selected>すべて
+			<option value="book">本
+			<option value="dvd">DVD
+			<option value="game">ゲーム
+		</select><br><br>
+		<input type="submit" value="計算">
+	</form>
+
 	<h3>ようこそ！サンプルショッピングサイトへ</h3>
 
 	<p>このサイトは教材用として作成されています。</p>

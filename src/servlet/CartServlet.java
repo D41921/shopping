@@ -64,6 +64,7 @@ public class CartServlet extends HttpServlet {
 				cart.addCart(bean, quantity);
 				// 自画面遷移
 				this.gotoPage(request, response, "cart.jsp");
+				
 			} catch (DAOException e) {
 				e.printStackTrace();
 				request.setAttribute("message", "内部エラーが発生しました。");
