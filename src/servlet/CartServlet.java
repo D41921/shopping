@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,8 +63,21 @@ public class CartServlet extends HttpServlet {
 				ItemBean bean = dao.findByPrimariKey(code);
 				// カートに追加する
 				cart.addCart(bean, quantity);
-				// 自画面遷移
-				this.gotoPage(request, response, "cart.jsp");
+
+				//画面遷移
+				ItemDAO dao1 = new ItemDAO();
+				String code1 = request.getParameter("categoryCode");
+				int categoryCode = Integer.parseInt(code1);
+
+
+
+				List<ItemBean> list = dao1.findByCategory(categoryCode);
+					 //商品一覧に遷移
+					this.gotoPage(request, response, "list.jsp");
+
+
+				// 画面遷移
+				//this.gotoPage(request, response, "cart.jsp");
 			} catch (DAOException e) {
 				e.printStackTrace();
 				request.setAttribute("message", "内部エラーが発生しました。");

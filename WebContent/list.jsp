@@ -27,7 +27,12 @@
 		</select>個<br/>
 		<input type="hidden" name="item_code" value="${item.code}" />
 		<input type="submit" value="カートに追加" />
+		<input type="hidden" name="categoryCode" value="${code}" />
+
 	</form>
 	</c:forEach>
+	<form action = "/shopping/ShowItemServlet?action=list&code=${category.code}">
+
+	</form>
 </body>
 </html>

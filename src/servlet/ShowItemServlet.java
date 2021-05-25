@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.CategoryBean;
 import bean.ItemBean;
@@ -50,16 +51,26 @@ public class ShowItemServlet extends HttpServlet {
 				ItemDAO dao = new ItemDAO();
 				List<ItemBean> list = dao.findByCategory(categoryCode);
 				// リクエストスコープに商品リストを登録
-				 request.setAttribute("items", list);
+				HttpSession session = request.getSession();
+				session.setAttribute("items", list);
+				request.setAttribute("code", categoryCode);
+
 				// 商品一覧に遷移
 				gotoPage(request, response, "list.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+				rd.forward(request, response);
+
+
+
 			} catch (DAOException e) {
 				e.printStackTrace();
 				request.setAttribute("message", "内部エラーが発生しました。");
 				gotoPage(request, response, "errInternal.jsp");
 			}
 		}
-	}
+
+		}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
