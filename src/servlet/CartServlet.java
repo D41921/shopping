@@ -70,7 +70,6 @@ public class CartServlet extends HttpServlet {
 				int categoryCode = Integer.parseInt(code1);
 
 
-
 				List<ItemBean> list = dao1.findByCategory(categoryCode);
 				request.setAttribute("code", categoryCode);
 					 //商品一覧に遷移
