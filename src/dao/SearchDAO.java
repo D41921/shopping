@@ -11,43 +11,25 @@ import java.util.List;
 import bean.ItemBean;
 
 public class SearchDAO {
-
 	private Connection con;
 
-	public SearchDAO() throws DAOException {
-		this.getConnection();
+	public SearchDAO() throws DAOException{
+		getConnection();
 	}
 
-	private void getConnection() throws DAOException {
-		// データベース接続情報の設定
-		String driver = "org.postgresql.Driver";
-		String url = "jdbc:postgresql:sample";
-		String user = "student";
-		String password = "himitu";
-
-		try {
-			Class.forName(driver);
-			this.con = DriverManager.getConnection(url, user, password);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-			throw new DAOException("データベースの接続に失敗しました。");
-		}
-
-	}
-
-	@SuppressWarnings({ "resource", "null" })
-	public List<ItemBean> findAllItem(String search) throws DAOException {
-
+	public List<ItemBean> SearchItems(String search) throws DAOException {
 		// データベース接続関連オブジェクトの初期化
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-			String sql = "select * from item where name like '% ? %' ";
-			pstmt.setString(1, search);
+			String sql = "select * from item where name like '% ? %'";
 			pstmt = this.con.prepareStatement(sql);
+			// プレースホルダを設定
+			pstmt.setString(1, search);
+			// SQLの実行と結果セットの取得
 			rs = pstmt.executeQuery();
-
+			// 結果セットから商品リストを取得
 			List<ItemBean> list = new ArrayList<ItemBean>();
 			while (rs.next()) {
 				int code = rs.getInt("code");
@@ -57,11 +39,10 @@ public class SearchDAO {
 				list.add(bean);
 			}
 
-			//商品リストを返却
+			// 商品リストを返却
 			return list;
 
-		}catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 		} finally {
@@ -77,13 +58,31 @@ public class SearchDAO {
 
 	}
 
+
+	private void getConnection() throws DAOException {
+
+		/**
+		 * データベース接続情報
+		 */
+		String driver = "org.postgresql.Driver";
+		String url = "jdbc:postgresql:sample";
+		String user = "student";
+		String password = "himitu";
+
+		try {
+			Class.forName(driver);
+			this.con = DriverManager.getConnection(url, user, password);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("データベースの接続に失敗しました。");
+		}
+	}
+
 	private void close() throws SQLException {
-		// TODO 自動生成されたメソッド・スタブ
 		if (this.con != null) {
 			this.con.close();
 			this.con = null;
 		}
 	}
-
 
 }
