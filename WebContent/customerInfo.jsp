@@ -53,7 +53,6 @@
 		<input type ="text" name ="tel3" value ="333" /><br>
 		Email <input type ="text" name ="email1" value ="ichiro" />@
 		<input type ="text" name ="email2" value ="abc.com" /><br>
-
 		<input type="submit" value="確認画面へ" />
 	</form>
 

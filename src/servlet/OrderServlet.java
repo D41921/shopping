@@ -33,7 +33,7 @@ public class OrderServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		// リクエストの文字コードを設定
 		request.setCharacterEncoding("utf-8");
 
@@ -73,7 +73,6 @@ public class OrderServlet extends HttpServlet {
 			String email1 = request.getParameter("email1");
 			String email2 = request.getParameter("email2");
 			CustomerBean customer = new CustomerBean();
-
 			//何も入力しなかった場合の例外処理
 			if (name == null || name.length() == 0 || address == null || address.length() == 0 ||
 					tel1 == null || tel1.length() == 0 || tel2 == null || tel2.length() == 0 ||
@@ -142,7 +141,6 @@ public class OrderServlet extends HttpServlet {
 				//確認画面に遷移
 				this.gotoPage(request, response, "/confirm.jsp");
 			}
-
 
 
 		// actionキーが「order」の場合：完了画面に遷移

@@ -4,6 +4,13 @@
 <!-- メニュー -->
 <a href="/shopping/ShowItemServlet?action=top">ようこそ</a>|
 
+
+<form action="/lesson/CircleServlet" method="post">
+		 <input type="text" name="search" size="20">
+		<input type="submit" value="検索">
+	</form>
+
+
 <c:forEach items="${categories}" var="category">
 <a href="/shopping/ShowItemServlet?action=list&code=${category.code}">${category.name}</a>|
 </c:forEach>
