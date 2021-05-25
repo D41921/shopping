@@ -72,6 +72,7 @@ public class CartServlet extends HttpServlet {
 
 
 				List<ItemBean> list = dao1.findByCategory(categoryCode);
+				request.setAttribute("code", categoryCode);
 					 //商品一覧に遷移
 					this.gotoPage(request, response, "list.jsp");
 

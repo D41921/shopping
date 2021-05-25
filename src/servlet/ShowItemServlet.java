@@ -57,8 +57,8 @@ public class ShowItemServlet extends HttpServlet {
 
 				// 商品一覧に遷移
 				gotoPage(request, response, "list.jsp");
-				RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
-				rd.forward(request, response);
+				//RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+				//rd.forward(request, response);
 
 
 
