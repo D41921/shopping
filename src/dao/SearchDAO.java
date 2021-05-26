@@ -28,6 +28,7 @@ public class SearchDAO {
 
 
 		try {
+
 			String sql = "select * from item where name like ? ";
 			pstmt = this.con.prepareStatement(sql);
 			// プレースホルダを設定
