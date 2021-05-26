@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.CategoryBean;
+import bean.ItemBean;
 import dao.DAOException;
-import dao.ItemDAO;
+import dao.SearchDAO;
 
 /**
  * Servlet implementation class SearchServlet
@@ -48,22 +48,26 @@ public class SearchServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		//リクエストパラメータの取得
+
+        //request.setAttribute(search, out);
 		String search = request.getParameter("search");
-        request.setAttribute(search, out);
 
 		try {
+
 			if (search == null || search.length() == 0) {
 				//検索バーの内容が未入力
 				out.println("文字を入力して下さい");
 				return;
 			}
+
+			
 			//モデルを使って検索結果を取得する
-			ItemDAO dao = new ItemDAO();
-			List<CategoryBean> searchlist = dao.findByAllCategory();
+			SearchDAO dao = new SearchDAO();
+			List<ItemBean> list = dao.SearchItems(search);
 
 			//searchlistをリクエストスコープに入れてjspへフォワードする
-			request.setAttribute("searchitem", searchlist);
-			RequestDispatcher rd = request.getRequestDispatcher("/Search.jsp");
+			request.setAttribute("items", list);
+			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
 			rd.forward(request, response);
 
 		} catch (DAOException e) {
