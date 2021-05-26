@@ -47,11 +47,11 @@
 	<form action="/shopping/OrderServlet?action=confirm" method="post">
 
 		お名前<input type ="text" name ="name" value ="鈴木一郎" /><br>
-		住所<input type ="text" name ="address" value ="東京都新宿区" /><br>
-		電話<input type ="text" name ="tel1" value ="033" />-
-		<input type ="text" name ="tel2" value ="333" />-
+		住所　 <input type ="text" name ="address" value ="東京都新宿区" /><br>
+		電話　 <input type ="text" name ="tel1" value ="033" />　-
+		<input type ="text" name ="tel2" value ="333" />　-
 		<input type ="text" name ="tel3" value ="333" /><br>
-		Email <input type ="text" name ="email1" value ="ichiro" />@
+		Email　<input type ="text" name ="email1" value ="ichiro" />　@　
 		<input type ="text" name ="email2" value ="abc.com" /><br>
 		<input type="submit" value="確認画面へ" />
 	</form>
