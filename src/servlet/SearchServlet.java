@@ -64,6 +64,8 @@ public class SearchServlet extends HttpServlet {
 
 			//searchlistをリクエストスコープに入れてjspへフォワードする
 			request.setAttribute("items", list);
+
+
 			gotoPage(request, response, "/list.jsp");
 			//RequestDispatcher rd = request.getRequestDispatcher("/Search.jsp");
 			//rd.forward(request, response);
