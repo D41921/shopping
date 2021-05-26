@@ -67,6 +67,7 @@ public class SearchServlet extends HttpServlet {
 
 			//searchlistをリクエストスコープに入れてjspへフォワードする
 			request.setAttribute("items", list);
+			
 
 
 			gotoPage(request, response, "/list.jsp");

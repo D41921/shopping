@@ -25,8 +25,8 @@ public class SearchDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		
-		
+
+
 		try {
 			String sql = "select * from item where name like ? ";
 			pstmt = this.con.prepareStatement(sql);
@@ -41,7 +41,9 @@ public class SearchDAO {
 				int code = rs.getInt("code");
 				String name = rs.getString("name");
 				int price = rs.getInt("price");
-				ItemBean bean = new ItemBean(code, name, price);
+				int categoryCode = rs.getInt("category_code");
+				
+				ItemBean bean = new ItemBean(code, name, price,categoryCode);
 				list.add(bean);
 
 

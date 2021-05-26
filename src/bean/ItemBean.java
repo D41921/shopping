@@ -13,6 +13,19 @@ public class ItemBean {
 	private String name;  // 商品名
 	private int price;    // 価格
 	private int quantity; // 数量
+	private int category_code;
+	
+	
+
+	
+
+	public int getCategory_code() {
+		return category_code;
+	}
+
+	public void setCategory_code(int category_code) {
+		this.category_code = category_code;
+	}
 
 	/**
 	 * デフォルトコンストラクタ
