@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.CategoryBean;
+import bean.ItemBean;
 import dao.DAOException;
-import dao.ItemDAO;
+import dao.SearchDAO;
 
 /**
  * Servlet implementation class SearchServlet
@@ -52,19 +52,21 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute(search, out);
 
 		try {
+
 			if (search == null || search.length() == 0) {
 				//検索バーの内容が未入力
 				out.println("文字を入力して下さい");
 				return;
 			}
 			//モデルを使って検索結果を取得する
-			ItemDAO dao = new ItemDAO();
-			List<CategoryBean> searchlist = dao.findByAllCategory();
+			SearchDAO dao = new SearchDAO();
+			List<ItemBean> list = dao.SearchItems(search);
 
 			//searchlistをリクエストスコープに入れてjspへフォワードする
-			request.setAttribute("searchitem", searchlist);
-			RequestDispatcher rd = request.getRequestDispatcher("/Search.jsp");
-			rd.forward(request, response);
+			request.setAttribute("items", list);
+			gotoPage(request, response, "/list.jsp");
+			//RequestDispatcher rd = request.getRequestDispatcher("/Search.jsp");
+			//rd.forward(request, response);
 
 		} catch (DAOException e) {
 			e.printStackTrace();
@@ -74,6 +76,11 @@ public class SearchServlet extends HttpServlet {
 
 		}
 		doGet(request, response);
+		}
+
+		private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page) throws ServletException, IOException {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+			dispatcher.forward(request, response);
 	}
 
 }
