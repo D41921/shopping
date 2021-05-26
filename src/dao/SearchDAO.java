@@ -27,8 +27,6 @@ public class SearchDAO {
 
 		try {
 			String sql = "select * from item where name like ? ";
-
-
 			pstmt = this.con.prepareStatement(sql);
 			// プレースホルダを設定
 			pstmt.setString(1,  "%" + search  +"%");
@@ -44,7 +42,7 @@ public class SearchDAO {
 				ItemBean bean = new ItemBean(code, name, price);
 				list.add(bean);
 
-				
+
 			}
 
 			// 商品リストを返却
