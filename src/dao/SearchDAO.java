@@ -23,10 +23,10 @@ public class SearchDAO {
 		ResultSet rs = null;
 
 		try {
-			String sql = "select * from item where name like '% ? %'";
+			String sql = "select * from item where name like ?";
 			pstmt = this.con.prepareStatement(sql);
 			// プレースホルダを設定
-			pstmt.setString(1, search);
+			pstmt.setString(1 , "%" + search + "%");
 			// SQLの実行と結果セットの取得
 			rs = pstmt.executeQuery();
 			// 結果セットから商品リストを取得
