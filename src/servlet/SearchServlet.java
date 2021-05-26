@@ -48,8 +48,9 @@ public class SearchServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		//リクエストパラメータの取得
+
+        //request.setAttribute(search, out);
 		String search = request.getParameter("search");
-        request.setAttribute(search, out);
 
 		try {
 
@@ -58,6 +59,8 @@ public class SearchServlet extends HttpServlet {
 				out.println("文字を入力して下さい");
 				return;
 			}
+
+
 			//モデルを使って検索結果を取得する
 			SearchDAO dao = new SearchDAO();
 			List<ItemBean> list = dao.SearchItems(search);

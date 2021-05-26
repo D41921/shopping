@@ -18,17 +18,24 @@ public class SearchDAO {
 	}
 
 	public List<ItemBean> SearchItems(String search) throws DAOException {
+		if(con == null)
+			getConnection();
+
 		// データベース接続関連オブジェクトの初期化
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
+
+
 		try {
-			String sql = "select * from item where name like ?";
+
+			String sql = "select * from item where name like ? ";
 			pstmt = this.con.prepareStatement(sql);
 			// プレースホルダを設定
-			pstmt.setString(1 , "%" + search + "%");
+			pstmt.setString(1,  "%" + search  +"%");
 			// SQLの実行と結果セットの取得
 			rs = pstmt.executeQuery();
+
 			// 結果セットから商品リストを取得
 			List<ItemBean> list = new ArrayList<ItemBean>();
 			while (rs.next()) {
@@ -37,6 +44,8 @@ public class SearchDAO {
 				int price = rs.getInt("price");
 				ItemBean bean = new ItemBean(code, name, price);
 				list.add(bean);
+
+
 			}
 
 			// 商品リストを返却
@@ -68,6 +77,7 @@ public class SearchDAO {
 		String url = "jdbc:postgresql:sample";
 		String user = "student";
 		String password = "himitu";
+
 
 		try {
 			Class.forName(driver);
