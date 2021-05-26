@@ -3,12 +3,6 @@
 
 <!-- メニュー -->
 <a href="/shopping/ShowItemServlet?action=top">ようこそ</a>|
-<!--  <form action="/shopping/SearchServlet" method="post">
-		 <input type="text" name="search" size="20">
-		<input type="submit" value="検索">
-	</form> -->
-
-
 
 <form action="/shopping/SearchServlet" method="post">
 		 <input type="text" name="search" size="20">

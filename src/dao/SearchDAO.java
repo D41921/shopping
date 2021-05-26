@@ -25,6 +25,8 @@ public class SearchDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
+		
+		
 		try {
 			String sql = "select * from item where name like ? ";
 			pstmt = this.con.prepareStatement(sql);
