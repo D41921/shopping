@@ -60,15 +60,18 @@ public class SearchServlet extends HttpServlet {
 				return;
 			}
 
-			
+
 			//モデルを使って検索結果を取得する
 			SearchDAO dao = new SearchDAO();
 			List<ItemBean> list = dao.SearchItems(search);
 
 			//searchlistをリクエストスコープに入れてjspへフォワードする
 			request.setAttribute("items", list);
-			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
-			rd.forward(request, response);
+
+
+			gotoPage(request, response, "/list.jsp");
+			//RequestDispatcher rd = request.getRequestDispatcher("/Search.jsp");
+			//rd.forward(request, response);
 
 		} catch (DAOException e) {
 			e.printStackTrace();
@@ -78,6 +81,11 @@ public class SearchServlet extends HttpServlet {
 
 		}
 		doGet(request, response);
+		}
+
+		private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page) throws ServletException, IOException {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+			dispatcher.forward(request, response);
 	}
 
 }
