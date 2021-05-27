@@ -11,16 +11,9 @@
 	<!-- メニュー -->
 	<jsp:include page="/menu.jsp" />
 
-
-
-
-
 	<h3>商品一覧</h3>
-	<c:if test="${items !=null || items.size() != 0 }">
-	<!-- itemsの値によって表示画面を分岐：検索結果がある場合 -->
 	<c:forEach items="${items}" var="item">
 	<form action="/shopping/CartServlet?action=add" method="post">
-
 		商品番号：${item.code}<br />
 		商品名：${item.name}<br />
 		価格（税込）：${item.price}円<br />
@@ -34,21 +27,11 @@
 		</select>個<br/>
 		<input type="hidden" name="item_code" value="${item.code}" />
 		<input type="submit" value="カートに追加" />
-		<input type="hidden" name="categoryCode" value="${code}" />
 
 	</form>
 	</c:forEach>
-	</c:if>
-    <!-- itemsの値によって表示画面を分岐：検索結果がない場合 -->
-	<c:if test="${items ==null || items.size() == 0 }">
-	表示できる商品はありませんでした。
-	</c:if>
-
-
-
 	<form action = "/shopping/ShowItemServlet?action=list&code=${category.code}">
+
 	</form>
-
-
 </body>
 </html>
