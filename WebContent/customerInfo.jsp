@@ -45,7 +45,7 @@
 	<h3>お客様情報を入力してください。</h3>
 
 	<form action="/shopping/OrderServlet?action=confirm" method="post">
-
+        <!-- テキストボックスで入力を内容を分割：エラー処理のため -->
 		お名前<input type ="text" name ="name" value ="鈴木一郎" /><br>
 		住所　 <input type ="text" name ="address" value ="東京都新宿区" /><br>
 		電話　 <input type ="text" name ="tel1" value ="033" />　-

@@ -25,17 +25,14 @@ public class SearchDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-
-
 		try {
-
+			//あいまい検索の入力をSQL文でデータベースに送信
 			String sql = "select * from item where name like ? ";
 			pstmt = this.con.prepareStatement(sql);
 			// プレースホルダを設定
 			pstmt.setString(1,  "%" + search  +"%");
 			// SQLの実行と結果セットの取得
 			rs = pstmt.executeQuery();
-
 			// 結果セットから商品リストを取得
 			List<ItemBean> list = new ArrayList<ItemBean>();
 			while (rs.next()) {
@@ -43,17 +40,15 @@ public class SearchDAO {
 				String name = rs.getString("name");
 				int price = rs.getInt("price");
 				int categoryCode = rs.getInt("category_code");
-				
+
 				ItemBean bean = new ItemBean(code, name, price,categoryCode);
 				list.add(bean);
-
-
 			}
-
 			// 商品リストを返却
 			return list;
 
 		} catch (SQLException e) {
+			//例外処理
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 		} finally {

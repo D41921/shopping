@@ -64,7 +64,7 @@ public class OrderServlet extends HttpServlet {
 
 		// actionキーが「confirm」の場合：入力情報確認画面に遷移
 		} else if (action.equals("confirm")) {
-			// リクエストパラメータの取得
+			// リクエストパラメータの取得:テキストボックスごとにデータ型を指定
 			String name = request.getParameter("name");
 			String address = request.getParameter("address");
 			String tel1 = request.getParameter("tel1");
@@ -97,16 +97,10 @@ public class OrderServlet extends HttpServlet {
 				@SuppressWarnings("unused")
 				String tel = tel1 + "-" + tel2 + "-" + tel3;
 				customer.setTel(tel);
-
 				String email = email1 + "@" + email2;
 				customer.setEmail(email);
-
-
 				// セッションスコープに顧客情報を登録
 				session.setAttribute("customer", customer);
-				// 確認画面に遷移
-				//this.gotoPage(request, response, "/confirm.jsp");
-
 				}catch (Exception e) {
 				request.setAttribute("message", "不正な値が入力されました。");
 				this.gotoPage(request, response, "/errInternal.jsp");
@@ -124,8 +118,6 @@ public class OrderServlet extends HttpServlet {
 				customer.setName(name);
 				//セッションスコープに顧客情報を登録
 				session.setAttribute("customer", customer);
-				//画面遷移
-				//this.gotoPage(request, response, "/confirm.jsp");
 				}
 
 			try {

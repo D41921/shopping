@@ -3,7 +3,7 @@
 
 <!-- メニュー -->
 <a href="/shopping/ShowItemServlet?action=top">ようこそ</a>|
-
+<!-- 検索機能の追加 -->
 <form action="/shopping/SearchServlet" method="post">
 		 <input type="text" name="search" size="20">
 		<input type="submit" value="検索">
