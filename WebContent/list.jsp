@@ -12,12 +12,10 @@
 	<jsp:include page="/menu.jsp" />
 
 	<h3>商品一覧</h3>
-<<<<<<< HEAD
-	<c:if test = "${items != null || items.size != 0 }">
-=======
+
 	<c:if test="${items !=null || items.size() != 0 }">
 	<!-- itemsの値によって表示画面を分岐：検索結果がある場合 -->
->>>>>>> branch 'main' of https://github.com/D41921/shopping.git
+
 	<c:forEach items="${items}" var="item">
 	<form action="/shopping/CartServlet?action=add" method="post">
 
@@ -40,16 +38,12 @@
 	</c:forEach>
 	</c:if>
 
-<<<<<<< HEAD
 
-	<c:if test="${items.size() == 0  }">
-	表示できる商品はありません
-=======
     <!-- itemsの値によって表示画面を分岐：検索結果がない場合 -->
 	<c:if test="${items ==null || items.size() == 0 }">
 
 	表示できる商品はありませんでした。
->>>>>>> branch 'main' of https://github.com/D41921/shopping.git
+
 	</c:if>
 	<form action = "/shopping/ShowItemServlet?action=list&code=${category.code}">
 	</form>
