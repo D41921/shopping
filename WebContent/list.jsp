@@ -11,10 +11,6 @@
 	<!-- メニュー -->
 	<jsp:include page="/menu.jsp" />
 
-
-
-
-
 	<h3>商品一覧</h3>
 
 
@@ -43,8 +39,8 @@
 	</c:if>
 
 
-	<c:if test="${items.size() == 0} ">
-	検索された商品はありませんでした
+	<c:if test="${items.size() == 0  }">
+	表示できる商品はありません
 	</c:if>
 
 
