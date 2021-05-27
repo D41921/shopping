@@ -64,6 +64,8 @@ public class SearchServlet extends HttpServlet {
 			//モデルを使って検索結果を取得する
 			SearchDAO dao = new SearchDAO();
 			List<ItemBean> list = dao.SearchItems(search);
+			
+			
 
 			//searchlistをリクエストスコープに入れてjspへフォワードする
 			request.setAttribute("items", list);

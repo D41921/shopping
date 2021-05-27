@@ -11,9 +11,17 @@
 	<!-- メニュー -->
 	<jsp:include page="/menu.jsp" />
 
+
+
+
+
 	<h3>商品一覧</h3>
+
+
+	<c:if test="${items.size() != 0}">
 	<c:forEach items="${items}" var="item">
 	<form action="/shopping/CartServlet?action=add" method="post">
+
 		商品番号：${item.code}<br />
 		商品名：${item.name}<br />
 		価格（税込）：${item.price}円<br />
@@ -31,8 +39,17 @@
 
 	</form>
 	</c:forEach>
-	<form action = "/shopping/ShowItemServlet?action=list&code=${category.code}">
+	</c:if>
 
+	<c:if test="${items.size() == 0} ">
+	検索された商品はありませんでした
+	</c:if>
+
+
+
+	<form action = "/shopping/ShowItemServlet?action=list&code=${category.code}">
 	</form>
+
+
 </body>
 </html>
