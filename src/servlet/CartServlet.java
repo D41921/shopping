@@ -63,29 +63,22 @@ public class CartServlet extends HttpServlet {
 				ItemBean bean = dao.findByPrimariKey(code);
 				// カートに追加する
 				cart.addCart(bean, quantity);
-
 				//画面遷移
 				ItemDAO dao1 = new ItemDAO();
-				
 				String code1 = request.getParameter("categoryCode");
 				try {
-					//カテゴリーコードあり
+				//カテゴリーコードあり
 				int categoryCode = Integer.parseInt(code1);
-
-
 				@SuppressWarnings("unused")
 				List<ItemBean> list = dao1.findByCategory(categoryCode);
 				request.setAttribute("code", categoryCode);
-					 //商品一覧に遷移
-					this.gotoPage(request, response, "list.jsp");}
+				 //商品一覧に遷移
+					this.gotoPage(request, response, "list.jsp");
 				//カテゴリーコードなし
-				catch(Exception e){
+			     } catch(Exception e){
 					gotoPage(request, response, "cart.jsp");
-				}
+				 }
 
-
-				// 画面遷移
-				//this.gotoPage(request, response, "cart.jsp");
 			} catch (DAOException e) {
 				e.printStackTrace();
 				request.setAttribute("message", "内部エラーが発生しました。");
