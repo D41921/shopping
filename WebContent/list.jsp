@@ -12,6 +12,7 @@
 	<jsp:include page="/menu.jsp" />
 
 	<h3>商品一覧</h3>
+	<c:if test = "${items != null || items.size != 0 }">
 	<c:forEach items="${items}" var="item">
 	<form action="/shopping/CartServlet?action=add" method="post">
 		商品番号：${item.code}<br />
@@ -31,8 +32,11 @@
 
 	</form>
 	</c:forEach>
-	<form action = "/shopping/ShowItemServlet?action=list&code=${category.code}">
+	</c:if>
+	<%--form action = "/shopping/ShowItemServlet?action=list&code=${category.code}"--%>
+	<c:if test = "${items == null || items.size == 0 }">
+	表示できる商品はありませんでした。
+	</c:if>
 
-	</form>
 </body>
 </html>
