@@ -18,7 +18,8 @@
 	<h3>商品一覧</h3>
 
 
-	<c:if test="${items.size() != 0}">
+	<c:if test="${items.size() != 0 }">
+
 	<c:forEach items="${items}" var="item">
 	<form action="/shopping/CartServlet?action=add" method="post">
 
@@ -40,6 +41,7 @@
 	</form>
 	</c:forEach>
 	</c:if>
+
 
 	<c:if test="${items.size() == 0} ">
 	検索された商品はありませんでした
