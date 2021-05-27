@@ -53,15 +53,10 @@ public class ShowItemServlet extends HttpServlet {
 				// リクエストスコープに商品リストを登録
 				HttpSession session = request.getSession();
 				session.setAttribute("items", list);
+				//同じ画面に遷移するためにカテゴリーコードをリクエストスコープに登録
 				request.setAttribute("code", categoryCode);
-
 				// 商品一覧に遷移
 				gotoPage(request, response, "list.jsp");
-				//RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
-				//rd.forward(request, response);
-
-
-
 			} catch (DAOException e) {
 				e.printStackTrace();
 				request.setAttribute("message", "内部エラーが発生しました。");

@@ -44,44 +44,28 @@ public class SearchServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//リクエストパラメータの文字コードの設定
 		request.setCharacterEncoding("utf-8");
-
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		//リクエストパラメータの取得
-
-        //request.setAttribute(search, out);
 		String search = request.getParameter("search");
-
 		try {
-
+			//検索バーの内容が未入力
 			if (search == null || search.length() == 0) {
-				//検索バーの内容が未入力
 				out.println("文字を入力して下さい");
 				return;
 			}
-
-
 			//モデルを使って検索結果を取得する
 			SearchDAO dao = new SearchDAO();
 			List<ItemBean> list = dao.SearchItems(search);
-			
-			
-
-			//searchlistをリクエストスコープに入れてjspへフォワードする
+			//listをリクエストスコープに入れてjspへフォワードする
 			request.setAttribute("items", list);
-			
-
-
+			//画面遷移
 			gotoPage(request, response, "/list.jsp");
-			//RequestDispatcher rd = request.getRequestDispatcher("/Search.jsp");
-			//rd.forward(request, response);
-
 		} catch (DAOException e) {
 			e.printStackTrace();
 			request.setAttribute("message", "内部エラーが発生しました");
 			RequestDispatcher rd = request.getRequestDispatcher("/errInternal.jsp");
 			rd.forward(request, response);
-
 		}
 		doGet(request, response);
 		}
